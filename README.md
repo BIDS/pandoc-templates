@@ -1,6 +1,7 @@
 # Example Pandoc/Markdown report
 
-You need [Pandoc](https://pandoc.org/installing.html) and LaTeX installed.
+You need [Pandoc](https://pandoc.org/installing.html) and LaTeX
+installed.  If you want to compile SVG diagrams, you'll also need Inkscape.
 
 Then, type `make` and view the example in `build/report.pdf`.
 

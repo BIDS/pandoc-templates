@@ -26,7 +26,7 @@ $(reports): $(build_dir)/%.pdf : %.md | $(images)
 	       -s -o $@ $<
 
 $(images): $(build_dir)/%.png : %.svg
-	inkscape --export-png=$@ --export-dpi=300 $<
+	-inkscape --export-png=$@ --export-dpi=300 $<
 
 # Add the build directory as an order only prerequisite
 $(foreach report,$(reports),$(eval $(report): | $(dir $(report))))

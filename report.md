@@ -60,4 +60,22 @@ Finally, you can also switch the document format to any class of your
 choice, but you will also have to modify the `Makefile` to remove the
 Tufte style there.
 
+# A beautiful diagram
+
+Here is a beautiful diagram.
+
+![](build/diagram.png){ width=30% }
+
+Which can also be rendered as a captioned figure:
+
+![My Beautiful Diagram](build/diagram.png){ width=30% }
+
+# Some source code
+
+```python
+def foo(bar):
+    return bar + 1
+```
+
 # Bibliography
+

@@ -1,20 +1,36 @@
 build_dir := build
-report := $(build_dir)/report.pdf
-bibstyle := ieee.csl
+excluded := README.md
+sources := $(filter-out $(excluded),$(wildcard *.md))
+reports = $(addprefix $(build_dir)/,$(sources:.md=.pdf))
+vector_images = $(wildcard *.svg)
+images := $(addprefix $(build_dir)/,$(vector_images:.svg=.png))
 
-default: $(report)
+# Look up your bibliography style at https://www.zotero.org/styles
+# Download the CSL file to the current directory and modify `bibstyle`
+# below
+bibstyle := ieee-with-url.csl
 
-$(build_dir):
-	mkdir -p $(build_dir)
+.PHONY: default
+default: $(reports)
 
-$(report): $(build_dir)
+$(build_dir)/:
+	mkdir -p $@
 
-$(build_dir)/%.pdf : %.md
-	pandoc --include-in-header header.tex --toc --template tufte-template.tex --filter pandocCommentFilter.py --filter pandoc-citeproc --csl $(bibstyle) -s $< -o $@
+$(reports): $(build_dir)/%.pdf : %.md | $(images)
+	# See https://pandoc.org/MANUAL.html#extensions for a list of extensions
+	pandoc --from markdown+implicit_figures \
+	       --include-in-header header.tex \
+	       --toc --template tufte-template.tex \
+	       --filter pandocCommentFilter.py \
+	       --filter pandoc-citeproc --csl $(bibstyle) \
+	       -s -o $@ $<
 
-$(build_dir)/%.png : %.svg
+$(images): $(build_dir)/%.png : %.svg
 	inkscape --export-png=$@ --export-dpi=300 $<
 
-clean: $(build_dir)
-	rm $(build_dir)/*
+# Add the build directory as an order only prerequisite
+$(foreach report,$(reports),$(eval $(report): | $(dir $(report))))
+$(foreach image,$(images),$(eval $(image): | $(dir $(image))))
 
+clean: $(build_dir)
+	rm -rf $(build_dir)

@@ -1,0 +1,33 @@
+\documentclass[letterpaper]{minimal}
+\usepackage[paperwidth=14in,paperheight=5in,top=15mm,left=35mm,right=50mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fontspec}
+\setmainfont[
+  Mapping=tex-text,
+]{TeX Gyre Adventor}
+\defaultfontfeatures{Scale=MatchLowercase}
+\usepackage{xcolor}
+\definecolor{bidsblue}{RGB}{0, 50, 98}
+\renewcommand\normalsize{\fontsize{15pt}{20pt}\selectfont}
+
+\begin{document}
+\begin{minipage}{\textwidth}
+    \begin{minipage}{0.4\textwidth}
+      \includegraphics[width=76mm]{../graphics/bids-logo.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.6\textwidth}\raggedleft
+      \vspace{0.5in}
+      \textcolor{bidsblue}{
+        \noindent Berkeley Institute for Data Science\\
+        \textsc{UNIVERSITY OF CALIFORNIA, BERKELEY}\\
+        190 Doe Library\\
+        Berkeley, CA 94720\\
+        http://bids.berkeley.edu}%
+    \end{minipage}
+    \begin{minipage}{\textwidth}
+      \vspace{7.5mm}
+      \hspace{2mm}\rule{\textwidth}{0.4pt}
+    \end{minipage}
+\end{minipage}
+\end{document}

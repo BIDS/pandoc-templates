@@ -4,11 +4,13 @@ sources := $(filter-out $(excluded),$(wildcard *.md))
 reports = $(addprefix $(build_dir)/,$(sources:.md=.pdf))
 vector_images = $(wildcard *.svg)
 images := $(addprefix $(build_dir)/,$(vector_images:.svg=.png))
+static := static/
+bin := bin/
 
 # Look up your bibliography style at https://www.zotero.org/styles
-# Download the CSL file to the current directory and modify `bibstyle`
+# Download the CSL file to the static directory and modify `bibstyle`
 # below
-bibstyle := ieee-with-url.csl
+bibstyle := $(static)ieee-with-url.csl
 
 .PHONY: default
 default: $(reports)
@@ -19,9 +21,9 @@ $(build_dir)/:
 $(reports): $(build_dir)/%.pdf : %.md | $(images)
 	# See https://pandoc.org/MANUAL.html#extensions for a list of extensions
 	pandoc --from markdown+implicit_figures \
-	       --include-in-header header.tex \
-	       --toc --template tufte-template.tex \
-	       --filter pandocCommentFilter.py \
+	       --include-in-header $(static)header.tex \
+	       --toc --template $(static)tufte-template.tex \
+	       --filter $(bin)pandocCommentFilter.py \
 	       --filter pandoc-citeproc --csl $(bibstyle) \
 	       -s -o $@ $<
 

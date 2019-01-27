@@ -34,6 +34,6 @@ e.g.
 ## Letter
 
 The letter template works very much like the report.  Any custom
-adjustments can be made to `template.tex`.  It is derived
+adjustments can be made to `static/tufte_template.tex`.  It is derived
 from [this template](https://github.com/mrzool/letter-boilerplate)
 which is [MIT licensed](https://opensource.org/licenses/MIT).

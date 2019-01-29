@@ -18,10 +18,13 @@ $(build_dir)/:
 
 $(reports): $(build_dir)/%.pdf : %.md | $(images)
 	# See https://pandoc.org/MANUAL.html#extensions for a list of extensions
+	# To disable TOC comment out --toc
+	# To disable Bibliography comment the line containing pandoc-citeproc
 	pandoc --from markdown+implicit_figures \
-	       --include-in-header header.tex \
-	       --toc --template tufte-template.tex \
+	       --template tufte-template.tex \
 	       --filter pandocCommentFilter.py \
+	       --include-in-header header.tex \
+	       --toc \
 	       --filter pandoc-citeproc --csl $(bibstyle) \
 	       -s -o $@ $<
 

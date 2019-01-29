@@ -4,9 +4,11 @@ sources := $(filter-out $(excluded),$(wildcard *.md))
 reports = $(addprefix $(build_dir)/,$(sources:.md=.pdf))
 vector_images = $(wildcard *.svg)
 images := $(addprefix $(build_dir)/,$(vector_images:.svg=.png))
+static := static
+bin := bin
 
 # Look up your bibliography style at https://www.zotero.org/styles
-# Download the CSL file to the current directory and modify `bibstyle`
+# Download the CSL file to the static directory and modify `bibstyle`
 # below
 bibstyle := ieee-with-url.csl
 
@@ -21,11 +23,11 @@ $(reports): $(build_dir)/%.pdf : %.md | $(images)
 	# To disable TOC comment out --toc
 	# To disable Bibliography comment the line containing pandoc-citeproc
 	pandoc --from markdown+implicit_figures \
-	       --template tufte-template.tex \
-	       --filter pandocCommentFilter.py \
-	       --include-in-header header.tex \
+	       --template $(static)/tufte-template.tex \
+	       --filter $(bin)/pandocCommentFilter.py \
+	       --include-in-header $(static)/header.tex \
 	       --toc \
-	       --filter pandoc-citeproc --csl $(bibstyle) \
+	       --filter pandoc-citeproc --csl $(static)/$(bibstyle) \
 	       -s -o $@ $<
 
 $(images): $(build_dir)/%.png : %.svg

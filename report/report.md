@@ -4,20 +4,6 @@ author: "Author One, Author Two, Author Three"
 date: Berkeley Institute for Data Science (BIDS) \newline \vspace{-.15cm}  University of California, Berkeley  \newline October 2018
 draft: true
 bibliography: bibliography.bib
-#fontfamily: utopia
-# See also http://pandoc.org/MANUAL.html#templates (search for fontfamily)
-# utopia, bookman, mathpazo (Palatino), arev (Arev Sans), fouriernc, times, libertine, lmodern
-documentclass: tufte-handout
-fontfamily: mathpazo
-mainfont: Palatino
-monofont: Menlo
-fontsize: 10pt
-newtxmathoptions:
-- cmintegrals
-- cmbraces
-linkcolor: RoyalBlue
-urlcolor: RoyalBlue
-toccolor: RoyalBlue
 abstract: |
     Any LaTeX can go here; this is the summary of the document.
 

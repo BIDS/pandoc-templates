@@ -1,0 +1,16 @@
+---
+#fontfamily: utopia
+# See also http://pandoc.org/MANUAL.html#templates (search for fontfamily)
+# utopia, bookman, mathpazo (Palatino), arev (Arev Sans), fouriernc, times, libertine, lmodern
+documentclass: tufte-handout
+fontfamily: mathpazo
+mainfont: Palatino
+monofont: Menlo
+fontsize: 10pt
+newtxmathoptions:
+- cmintegrals
+- cmbraces
+linkcolor: RoyalBlue
+urlcolor: RoyalBlue
+toccolor: RoyalBlue
+---

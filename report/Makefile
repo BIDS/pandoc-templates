@@ -6,6 +6,7 @@ vector_images = $(wildcard *.svg)
 images := $(addprefix $(build_dir)/,$(vector_images:.svg=.png))
 static := static
 bin := bin
+metadata := $(static)/default.yml
 
 # Look up your bibliography style at https://www.zotero.org/styles
 # Download the CSL file to the static directory and modify `bibstyle`
@@ -22,7 +23,8 @@ $(reports): $(build_dir)/%.pdf : %.md | $(images)
 	# See https://pandoc.org/MANUAL.html#extensions for a list of extensions
 	# To disable TOC comment out --toc
 	# To disable Bibliography comment the line containing pandoc-citeproc
-	pandoc --from markdown+implicit_figures \
+	pandoc $(metadata) \
+	       --from markdown+implicit_figures \
 	       --template $(static)/tufte-template.tex \
 	       --filter $(bin)/pandocCommentFilter.py \
 	       --include-in-header $(static)/header.tex \
